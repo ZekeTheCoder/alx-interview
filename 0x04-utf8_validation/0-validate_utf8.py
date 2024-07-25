@@ -37,14 +37,14 @@ def validUTF8(data):
             if byte_count == 1 or byte_count > 4:
                 return False
         else:
-            # Check if the byte is a valid continuation byte
+            # Check if the current byte is a valid continuation byte
             if not (byte & msb_mask1 and not (byte & msb_mask2)):
                 return False
 
-# Updates the Byte Count to keep track of how many more continuation bytes
-# expected
+        # Decrement the byte_count after processing each byte
         byte_count -= 1
 
+    # If byte_count is 0, all bytes were valid
     if byte_count == 0:
         return True
 

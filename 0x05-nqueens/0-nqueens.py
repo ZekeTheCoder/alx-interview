@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """
 This program solves the N-Queens problem using a backtracking algorithm
 and prints all valid solutions.

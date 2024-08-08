@@ -29,12 +29,11 @@ async function printStarWarsCharacters () {
         const characterData = await fetchData(characterUrl)
         console.log(characterData.name)
       } catch (error) {
-        console.error(`Error fetching character data: ${error.message}`)
+        console.error(`Error fetching character data: ${error}`)
       }
     }
   } catch (error) {
-    console.error(`Error fetching film data: ${error.message}`)
-    process.exit(1) // Exit with a non-zero status code on error
+    console.error(`Error fetching film data: ${error}`)
   }
 }
 

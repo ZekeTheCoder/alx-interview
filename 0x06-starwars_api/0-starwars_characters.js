@@ -1,13 +1,9 @@
 #!/usr/bin/node
-// Script that prints all characters of a Star Wars movie
+/**
+ * Script that prints all characters of a Star Wars movie
+ */
 
 const request = require('request');
-
-// checks if the correct number of arguments (2) is provided
-if (process.argv.length !== 3) {
-  console.log('Usage: ./0-starwars_characters.js <movie_id>');
-  process.exit(1);
-}
 
 // URL for the Star Wars films API
 const filmsApiUrl = 'https://swapi-api.hbtn.io/api/films/';
@@ -52,7 +48,7 @@ async function printStarWarsCharacters() {
   } catch (error) {
     // Handle errors for fetching film data
     console.error(`Error fetching film data: ${error.message}`);
-    process.exit(1); // Exit with a non-zero status code on error
+    // process.exit(1); // Exit with a non-zero status code on error
   }
 }
 

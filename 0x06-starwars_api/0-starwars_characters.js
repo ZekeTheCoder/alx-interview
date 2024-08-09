@@ -1,47 +1,25 @@
 #!/usr/bin/node
-/* Script that prints all characters of a Star Wars movie */
+
 const request = require('request');
-
-// checks if the correct number of arguments (2) is provided
-if (process.argv.length !== 3) {
-  console.log('Usage: ./0-starwars_characters.js <movie_id>');
-  process.exit(1);
-}
-
-const filmsApiUrl = 'https://swapi-api.hbtn.io/api/films/';
 const movieId = process.argv[2];
+const filmsApiUrl = `https://swapi-api.hbtn.io/api/films/${movieId}/`;
 
-// Function to fetch data from a given URL and return a Promise 
-function fetchData(url) {
-  return new Promise((resolve, reject) => {
-    request(url, (error, response, body) => {
-      if (error) {
-        reject(error);
-      } else {
-        resolve(JSON.parse(body));
-      }
-    });
-  });
-}
-
-// function to fetch and print Star Wars characters from a specified movie
-async function printStarWarsCharacters() {
-  try {
-    const filmData = await fetchData(`${filmsApiUrl}${movieId}/`);
-    const characterUrls = filmData.characters;
-
+request(filmsApiUrl, async function (err, res, body) {
+  if (err) {
+    return console.log(err);
+  } else {
+    const characterUrls = JSON.parse(body).characters;
     for (const characterUrl of characterUrls) {
-      try {
-        const characterData = await fetchData(characterUrl);
-        console.log(characterData.name);
-      } catch (error) {
-        console.error(`Error fetching character data: ${error.message}`);
-      }
+      const characterData = await new Promise((resolve, reject) => {
+        request(characterUrl, (err, res, body) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(JSON.parse(body).name);
+          }
+        });
+      });
+      console.log(characterData);
     }
-  } catch (error) {
-    console.error(`Error fetching film data: ${error.message}`);
-    process.exit(1); // Exit with a non-zero status code on error
   }
-}
-
-printStarWarsCharacters();
+});

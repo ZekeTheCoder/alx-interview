@@ -6,7 +6,7 @@ isWinner = __import__('0-prime_game').isWinner
 print("Winner: {}".format(isWinner(5, [2, 5, 1, 4, 3])))
 
 # Test case 2: Empty list
-# print("Test 2:", isWinner(3, []))
+print("Test 2:", isWinner(3, []))
 
 # Test case 3: All ones
 print("Test 3:", isWinner(5, [1, 1, 1, 1, 1]))

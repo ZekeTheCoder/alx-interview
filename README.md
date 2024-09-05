@@ -9,3 +9,4 @@
 6. [0x05-nqueens](./0x05-nqueens)
 7. [0x06-starwars_api](./0x06-starwars_api)
 9. [0x08-making_change](./0x08-making_change)
+10. [0x0A-primegame](./0x0A-primegame)
